@@ -2,7 +2,7 @@
 
 The slog-traceparent package contains a simple middleware for the slog
 package to parse an incoming traceparent header and put the
-traceinfomation into current context. The
+trace information into current context. The
 [slog-context](github.com/veqryn/slog-context) package can be used to
 append or prepend the trace information to the log record.
 
