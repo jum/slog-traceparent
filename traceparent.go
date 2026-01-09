@@ -70,7 +70,7 @@ func TraceParentExtractor(ctx context.Context, recordT time.Time, recordLvl slog
 		slog.Bool("traceSampled", trace.Sampled),
 	}
 	if trace.SpanID != "" {
-		attrs = append(attrs, slog.String("spanID", trace.ID))
+		attrs = append(attrs, slog.String("spanID", trace.SpanID))
 	}
 	return attrs
 }
