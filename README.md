@@ -25,8 +25,6 @@ import (
 
 	traceparent "github.com/jum/slog-traceparent"
 	slogctx "github.com/veqryn/slog-context"
-	"golang.org/x/net/http2"
-	"golang.org/x/net/http2/h2c"
 )
 
 func main() {
@@ -82,11 +80,13 @@ func main() {
 		slog.DebugContext(ctx, "incoming", "parent", r.Header.Get("traceparent"))
 		fmt.Fprintf(w, "Hello, World!\n")
 	})
-	h2s := &http2.Server{}
 	srv := http.Server{
 		Addr:    addr,
-		Handler: h2c.NewHandler(traceparent.New(mux), h2s),
+		Handler: mux,
 	}
+    srv.Protocols = new(http.Protocols)
+    srv.Protocols.SetHTTP1(true)
+    usrv.Protocols.SetUnencryptedHTTP2(true)
 	listener, err := net.Listen(network, addr)
 	if err != nil {
 		slog.Error("init listen", "err", err)
