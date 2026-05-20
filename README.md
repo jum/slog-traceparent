@@ -82,7 +82,7 @@ func main() {
 	})
 	srv := http.Server{
 		Addr:    addr,
-		Handler: mux,
+		Handler: traceparent.New(mux),
 	}
     srv.Protocols = new(http.Protocols)
     srv.Protocols.SetHTTP1(true)
