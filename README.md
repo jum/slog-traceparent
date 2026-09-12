@@ -86,7 +86,7 @@ func main() {
 	}
     srv.Protocols = new(http.Protocols)
     srv.Protocols.SetHTTP1(true)
-    usrv.Protocols.SetUnencryptedHTTP2(true)
+    srv.Protocols.SetUnencryptedHTTP2(true)
 	listener, err := net.Listen(network, addr)
 	if err != nil {
 		slog.Error("init listen", "err", err)
